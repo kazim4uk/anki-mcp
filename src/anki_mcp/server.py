@@ -203,6 +203,16 @@ def unsuspend_cards(card_ids: list[int]) -> str:
     return f"Unsuspended {len(card_ids)} card(s)."
 
 
+@mcp.tool()
+def move_cards(card_ids: list[int], deck: str) -> str:
+    """Move the given cards to another deck. The target deck is created
+    automatically if it does not exist. Note: in Anki you move *cards*, not
+    notes — get card IDs from `find_cards`, or from the `cards` field returned
+    by `find_notes`."""
+    invoke("changeDeck", cards=card_ids, deck=deck)
+    return f"Moved {len(card_ids)} card(s) to deck '{deck}'."
+
+
 # --------------------------------------------------------------------------
 # Media & service
 # --------------------------------------------------------------------------

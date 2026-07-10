@@ -112,6 +112,7 @@ On Windows use the `.exe` and escaped backslashes, e.g.
 | `add_tags` / `remove_tags` | Tag / untag notes |
 | `find_cards` | Search cards → IDs + card info |
 | `suspend_cards` / `unsuspend_cards` | Suspend / unsuspend cards |
+| `move_cards` | Move cards to another deck (created if missing) |
 | `store_media_file` | Add image/audio to the media folder |
 | `cards_reviewed_today` | Count of today's reviews |
 | `sync` | Sync with AnkiWeb |
