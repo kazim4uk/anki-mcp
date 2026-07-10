@@ -94,28 +94,56 @@ On Windows use the `.exe` and escaped backslashes, e.g.
 
 ## Tools
 
-| Tool | What it does |
-|------|--------------|
-| `anki_version` | Health check — is AnkiConnect reachable? |
-| `list_decks` | List all deck names |
-| `create_deck` | Create a deck (`A::B` = nested) |
-| `delete_deck` | Delete a deck (optionally keep its cards) |
-| `deck_stats` | Review stats for given decks |
-| `list_note_types` | List note type (model) names |
-| `note_type_fields` | Field names of a note type |
-| `add_note` | Add one note |
-| `add_notes` | Add many notes at once |
-| `find_notes` | Search notes → IDs + field data |
-| `update_note_fields` | Edit fields of an existing note |
-| `delete_notes` | Delete notes (and their cards) |
-| `list_tags` | List all tags |
-| `add_tags` / `remove_tags` | Tag / untag notes |
-| `find_cards` | Search cards → IDs + card info |
-| `suspend_cards` / `unsuspend_cards` | Suspend / unsuspend cards |
-| `move_cards` | Move cards to another deck (created if missing) |
-| `store_media_file` | Add image/audio to the media folder |
-| `cards_reviewed_today` | Count of today's reviews |
-| `sync` | Sync with AnkiWeb |
+This server exposes the **complete AnkiConnect API** — 100+ tools covering
+everything AnkiConnect can do. Grouped by category:
+
+**Connection & misc** — `anki_version`, `request_permission`,
+`list_supported_actions`, `sync`, `reload_collection`, `get_profiles`,
+`get_active_profile`, `load_profile`, `export_package`, `import_package`,
+`raw_request` (escape hatch: call any AnkiConnect action directly).
+
+**Decks** — `list_decks`, `list_decks_with_ids`, `get_decks_for_cards`,
+`create_deck`, `delete_deck`, `move_cards`, `deck_stats`.
+Deck options: `get_deck_config`, `save_deck_config`, `set_deck_config_id`,
+`clone_deck_config`, `remove_deck_config`.
+
+**Note types (models)** — `list_note_types`, `list_note_types_with_ids`,
+`find_note_types_by_id`, `find_note_types_by_name`, `note_type_fields`,
+`note_type_field_descriptions`, `note_type_field_fonts`,
+`note_type_fields_on_templates`, `create_note_type`, `note_type_templates`,
+`note_type_styling`, `update_note_type_templates`, `update_note_type_styling`,
+`find_and_replace_in_note_types`.
+Structure editing: `note_type_template_{rename,reposition,add,remove}`,
+`note_type_field_{rename,reposition,add,remove,set_font,set_font_size,set_description}`.
+
+**Notes** — `add_note`, `add_notes`, `can_add_notes`, `find_notes`,
+`notes_info`, `notes_mod_time`, `update_note_fields`, `update_note`,
+`update_note_tags`, `get_note_tags`, `delete_notes`, `remove_empty_notes`.
+
+**Tags** — `list_tags`, `add_tags`, `remove_tags`, `clear_unused_tags`,
+`replace_tag`, `replace_tag_in_all_notes`.
+
+**Cards** — `find_cards`, `cards_info`, `cards_to_notes`, `cards_mod_time`,
+`suspend_cards`, `unsuspend_cards`, `are_suspended`, `are_due`,
+`get_intervals`, `get_ease_factors`, `set_ease_factors`, `set_card_values`,
+`forget_cards`, `relearn_cards`, `set_due_date`, `answer_cards`.
+
+**Media** — `store_media_file`, `retrieve_media_file`, `list_media_files`,
+`get_media_dir_path`, `delete_media_file`.
+
+**Statistics** — `cards_reviewed_today`, `cards_reviewed_by_day`,
+`collection_stats_html`, `card_reviews`, `get_reviews_of_cards`,
+`get_latest_review_id`, `insert_reviews`.
+
+**GUI (drive Anki's windows)** — `gui_browse`, `gui_selected_notes`,
+`gui_add_cards`, `gui_edit_note`, `gui_current_card`, `gui_show_question`,
+`gui_show_answer`, `gui_answer_card`, `gui_undo`, `gui_deck_overview`,
+`gui_deck_browser`, `gui_deck_review`, `gui_import_file`, `gui_check_database`,
+`gui_exit_anki`.
+
+Every tool has a description the assistant reads, so you can just ask in plain
+language — e.g. "move all suspended cards in Deck A to Deck B", "create a Cloze
+note type called X", "reschedule these cards to be due in 3 days".
 
 ### Search syntax
 
